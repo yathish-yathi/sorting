@@ -1,0 +1,24 @@
+tag :easy
+
+class Solution
+{
+  public void insertionSort(int arr[], int n)
+  {
+      //select element one by one
+      for(int i=0; i<n; i++){
+          int j=i-1;
+          int key=arr[i];
+          
+          //slide
+          while(j>=0 && arr[j]>key){
+              arr[j+1]=arr[j];
+              j--;
+          }
+          
+          //insert
+          arr[j+1]=key;
+      }
+  }
+}
+
+T:O(N^2)  S:O(1)
