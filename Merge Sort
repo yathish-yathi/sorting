@@ -1,0 +1,74 @@
+Tags : medium , T O(nlogn) , S(n)
+
+class Solution
+{
+    void mergeSort(int arr[], int l, int r)
+    {
+        //code here
+        
+        //base condition l<r
+        if(l<r){
+            //find mid
+            int mid=(l+r)/2;
+            
+            //sort left and right
+            mergeSort(arr, l, mid);
+            mergeSort(arr, mid+1, r);
+            
+            //merge left and right
+            merge(arr, l, mid, r);
+        }
+        
+    }
+    
+    void merge(int arr[], int l, int m, int r)
+    {
+         // Your code here
+         //finding length of left and right array
+         int n1=m-l+1;
+         int n2=r-m;
+         
+         //creating temp left and right array
+         int[] temp1=new int[n1];
+         int[] temp2=new int[n2];
+         
+         //add into temp
+         for(int x=0; x<n1; x++){
+             temp1[x]=arr[l+x];
+         }
+         
+         
+         for(int x=0; x<n2; x++){
+             temp2[x]=arr[m+1+x];
+         }
+         
+         
+         //use 2  pointer concept 
+         int i=0, j=0;
+         int k=l;
+         while(i<n1 && j<n2){
+             if(temp1[i]<temp2[j]){
+                 arr[k]=temp1[i];
+                 i++;
+             }else{
+                 arr[k]=temp2[j];
+                 j++;
+             }
+             
+             k++;
+         }
+         
+         //add remaining (either of the loop which did not fail previous while loop will hit)
+         while(i<n1){
+             arr[k]=temp1[i];
+             i++;
+             k++;
+         }
+         
+         while(j<n2){
+             arr[k]=temp2[j];
+             j++;
+             k++;
+         }
+    }
+}
